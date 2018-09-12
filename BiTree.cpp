@@ -46,7 +46,7 @@ char Node::getValue(){
 	return value;
 }
 
-class Tree{
+class BiTree{
 
 	public:
 		int size();
@@ -56,19 +56,19 @@ class Tree{
 		Node* root;
 };
 
-int Tree::size(){
+int BiTree::size(){
 	return 0;
 }
 
-Node* Tree::getRoot(){
+Node* BiTree::getRoot(){
 	return root;
 }
 
-void Tree::setRoot(Node* node){
+void BiTree::setRoot(Node* node){
 	root = node;
 } 
 
-Tree* makeTree(){
+BiTree* makeTree(){
 	Node* nodeA = new Node('a');
 	Node* nodeB = new Node('b');
 	Node* nodeC = new Node('c');
@@ -106,7 +106,7 @@ Tree* makeTree(){
 	nodeI -> setChildLeft(NULL);
 	nodeI -> setChildRight(NULL);
 
-	Tree* tree = new Tree();
+	BiTree* tree = new BiTree();
 	tree->setRoot(nodeA);
 
 	return tree;
@@ -150,7 +150,7 @@ int main(int argc, char const *argv[])
 {
 	
 	
-	Tree* tree = makeTree();
+	BiTree* tree = makeTree();
 
 	cout << "先序遍历：";	
 	readFirst(tree->getRoot());
