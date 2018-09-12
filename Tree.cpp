@@ -12,36 +12,27 @@ using namespace std;
 （4）每当遇到结点时，则它一定为栈顶元素的子女，将其挂到栈顶元素的某子女位置上，并读入下一个符号；
 （5）每当遇到“，”，则略过该符号，并读入下一个符号。
 **/
-class Node{
+class Tree{
 
 	public: 
-		Node(char v);
-		void addChild(Node* node);
+		Tree(char v);
+		void addChild(Tree* node);
 		char getValue();
+		int size();
 	private:
 		char value;
 };
 
+Tree::Tree(char c):value(c){
+};
 
-Node::Node(char c):value(c){
-}
 
-
-void Node::addChild(Node* node){
+void Tree::addChild(Tree* node){
 	cout << "增加子节点：" << node->getValue() << endl;
-}
+};
 
-char Node::getValue(){
+char Tree::getValue(){
 	return value;
-}
-
-
-class Tree{
-
-	public:
-		int size();
-	private:
-		Node* root;
 };
 
 int main(int argc, char const *argv[])
@@ -52,14 +43,25 @@ int main(int argc, char const *argv[])
 	
 	int max_size = sizeof(str);
 
-	Node* stack[max_size];
+	Tree* stack[max_size];
 
 	for(int i=0;i<max_size;i++){
 
 		if(str[i] == endSymble){
 			printf("\n");	
-		}else{
-			Node* node = new Node(str[i]);
+			//结束
+			break;
+		} else if(str[i] == '('){
+			//左括号
+
+		} else if(str[i] == ')' ){
+			//右括号
+
+		} else if(str[i] == ',' ){
+			//逗号
+
+		} else{
+			Tree* node = new Tree(str[i]);
 			// stack[i] = node;
 			printf("%c", node->getValue());	
 		}
