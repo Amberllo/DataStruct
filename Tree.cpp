@@ -12,6 +12,8 @@ using namespace std;
 （4）每当遇到结点时，则它一定为栈顶元素的子女，将其挂到栈顶元素的某子女位置上，并读入下一个符号；
 （5）每当遇到“，”，则略过该符号，并读入下一个符号。
 **/
+
+
 class Tree{
 
 	public: 
@@ -35,17 +37,14 @@ char Tree::getValue(){
 	return value;
 };
 
+
 int main(int argc, char const *argv[])
 {
 	
 	char endSymble =  '\0';
 	char str[] = "A(B,C(F,G,H),D,E(I,J))";
 	
-	int max_size = sizeof(str);
-
-	Tree* stack[max_size];
-
-	for(int i=0;i<max_size;i++){
+	for(int i=0;i<sizeof(str);i++){
 
 		if(str[i] == endSymble){
 			printf("\n");	
