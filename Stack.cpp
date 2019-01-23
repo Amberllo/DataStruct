@@ -4,7 +4,9 @@
 #include <cstdio>
 using namespace std;
 
-
+/**
+* 链盏实现
+*/
 class Node {
 
 	public:
@@ -15,6 +17,20 @@ class Node {
 	private:
 		char value;
 		Node* pre;
+};
+
+class Stack{
+	public:
+		Stack();
+		void push(char v);
+		char peek();
+		char pop();
+		void clean();
+		bool isEmpty();
+		void printStack();
+	private:
+		Node* header;
+		Node* cur;
 };
 
 Node::Node(char v):value(v){
@@ -33,26 +49,13 @@ char Node::getValue(){
 	return value;
 }
 
-class Stack{
-	public:
-		Stack();
-		void push(Node* node);
-		Node* peek();
-		Node* pop();
-		void clean();
-		bool isEmpry();
-		void printStack();
-	private:
-		Node* header;
-		Node* cur;
-};
-
 Stack::Stack(){
 	header = new Node('\0');
 	cur = header;
 };
 
-void Stack::push(Node* node){
+void Stack::push(char v){
+	Node* node = new Node(v);
 	if(cur==header){
 		node->setPre(header);
 	}else{
@@ -61,46 +64,46 @@ void Stack::push(Node* node){
 	cur = node;
 };
 
-Node* Stack::peek(){
-	if(isEmpry()){
-		return NULL;
+char Stack::peek(){
+	if(isEmpty()){
+		return '\0';
 	}
-	return cur;
+	return cur->getValue();
 };
 
-Node* Stack::pop(){
-	if(isEmpry()){
-		return NULL;
+char Stack::pop(){
+	if(isEmpty()){
+		return '\0';
 	}
 	Node* temp = cur;
 	cur = (cur->getPre());
-	return temp;
+	return temp->getValue();
 };
 
 void Stack::clean(){
 	cur = header;
 };
 
-bool Stack::isEmpry(){
+bool Stack::isEmpty(){
 	return cur == header;
 };
 
 int main(int argc, char const *argv[])
 {
-	/* code */
-
-	Node* nodeA = new Node('a');
-	Node* nodeB = new Node('b');
-
 	Stack stack;
-	stack.push(nodeA);
-	stack.push(nodeB);
+	stack.push('a');
+	stack.push('b');
+	if(!stack.isEmpty()){
+		printf("%c\n", stack.peek());
+	}
 	
-	printf("%c\n", stack.pop()->getValue());
-	printf("%c\n", stack.pop()->getValue());
-	printf("%c\n", stack.pop()->getValue());
+	if(!stack.isEmpty()){
+		printf("%c\n", stack.pop());
+	}
 
-	
+	if(!stack.isEmpty()){
+		printf("%c\n", stack.pop());
+	}
 
 	return 0;
 }

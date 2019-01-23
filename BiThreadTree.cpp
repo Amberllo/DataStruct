@@ -5,7 +5,15 @@
 
 using namespace std;
 
+/**
+* 堆栈
+*/
+class Stack{
+	public:
 
+	private:
+		char stack[];
+};
 
 /**
 * 二叉树，链实现
