@@ -16,8 +16,16 @@ public:
 		addChild(this,child);
 	}
 
-	void printTree(){
+	void printFirst(){
+		printFirst(this);
+	}
+
+	void printMiddle(){
 		printMiddle(this);
+	}
+
+	void printLast(){
+		printLast(this);
 	}
 
 	int getValue(){
@@ -26,14 +34,32 @@ public:
 	
 protected:
 
-	//中序遍历，打印树
+	//中序遍历，打印树（左中右）
 	void printMiddle(BiSearchTree* node){
 		if(node!=NULL){
-			printf("%d ", node->getValue());
 			printMiddle(node->getLeft());
+			printf("%d ", node->getValue());
 			printMiddle(node->getRight());
 		}
 	}
+
+	//先序遍历，打印树（中左右）
+	void printFirst(BiSearchTree* node){
+		if(node!=NULL){
+			printf("%d ", node->getValue());
+			printFirst(node->getLeft());
+			printFirst(node->getRight());
+		}
+	}
+
+	//先序遍历，打印树（左右中）
+	void printLast(BiSearchTree* node){
+		if(node!=NULL){
+			printLast(node->getLeft());
+			printLast(node->getRight());
+			printf("%d ", node->getValue());
+		}
+	}	
 
 	BiSearchTree* getLeft(){
 		return left;
@@ -112,5 +138,7 @@ int main(int argc, char const *argv[]){
 
 	
 	
-	root.printTree();
+	root.printFirst();
+	// root.printMiddle();
+	// root.printLast();
 }
