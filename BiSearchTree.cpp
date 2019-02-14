@@ -10,16 +10,29 @@ public:
 		value = v;
 		left = NULL;
 		right = NULL;
-	};
+	}
 
 	void addChild(BiSearchTree* child){
 		addChild(this,child);
 	}
 
-	
+	void printTree(){
+		printMiddle(this);
+	}
 
 	int getValue(){
 		return value;
+	}
+	
+protected:
+
+	//中序遍历，打印树
+	void printMiddle(BiSearchTree* node){
+		if(node!=NULL){
+			printf("%d ", node->getValue());
+			printMiddle(node->getLeft());
+			printMiddle(node->getRight());
+		}
 	}
 
 	BiSearchTree* getLeft(){
@@ -30,7 +43,6 @@ public:
 		return right;
 	}
 
-protected:
 	void setLeft(BiSearchTree* l){
 		left = l;
 	};
@@ -38,6 +50,7 @@ protected:
 	void setRight(BiSearchTree* r){
 		right = r;
 	};
+
 	void addChild(BiSearchTree* parent, BiSearchTree* child){
 		int childValue = child->getValue();
 		int parentValue = parent->getValue();
@@ -72,17 +85,32 @@ private:
 };
 
 int main(int argc, char const *argv[]){
-	BiSearchTree root = BiSearchTree(10);
-	BiSearchTree node1 = BiSearchTree(5);
-	BiSearchTree node2 = BiSearchTree(15);
-	BiSearchTree node3 = BiSearchTree(20);
+	BiSearchTree root = BiSearchTree(41);
+	BiSearchTree node1 = BiSearchTree(22);
+	BiSearchTree node2 = BiSearchTree(58);
+	BiSearchTree node3 = BiSearchTree(15);
+	BiSearchTree node4 = BiSearchTree(33);
+	BiSearchTree node5 = BiSearchTree(50);
+	BiSearchTree node6 = BiSearchTree(60);
+	BiSearchTree node7 = BiSearchTree(13);
+	BiSearchTree node8 = BiSearchTree(28);
+	BiSearchTree node9 = BiSearchTree(37);
+	BiSearchTree node10 = BiSearchTree(42);
+	BiSearchTree node11 = BiSearchTree(53);
 
 	root.addChild(&node1);
-	root.addChild(&node3);
 	root.addChild(&node2);
-	
+	root.addChild(&node3);
+	root.addChild(&node4);
+	root.addChild(&node5);
+	root.addChild(&node6);
+	root.addChild(&node7);
+	root.addChild(&node8);
+	root.addChild(&node9);
+	root.addChild(&node10);
+	root.addChild(&node11);
 
-	cout<< root.getLeft()-> getValue()<< endl;
-	cout<< root.getRight()-> getValue()<< endl;
-	cout<< root.getRight()-> getLeft() -> getValue()<< endl;
+	
+	
+	root.printTree();
 }
