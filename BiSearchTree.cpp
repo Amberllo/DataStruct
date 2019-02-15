@@ -32,8 +32,8 @@ public:
 		return value;
 	}
 
-	bool contains(int v){
-		return contains(this, v);
+	bool contains(BiSearchTree* node){
+		return contains(this, node);
 	}
 	
 protected:
@@ -107,14 +107,16 @@ protected:
 
 	}
 
-	bool contains(BiSearchTree* node, int v){
-		if(node == NULL)return false;
-		if(v == node->getValue())  {
+	bool contains(BiSearchTree* root, BiSearchTree* node){
+		if(root == NULL)return false;
+		int rootValue = root->getValue();
+		int nodeValue = node->getValue();
+		if(root == node)  {
 			return true;
-		}else if(v > node->getValue()){
-			return contains(node->getRight(),v);
+		}else if( nodeValue > rootValue){
+			return contains(root->getRight(), node);
 		}else {
-			return contains(node->getLeft(),v); 
+			return contains(root->getLeft(), node); 
 		}
 	}
 
@@ -139,6 +141,8 @@ int main(int argc, char const *argv[]){
 	BiSearchTree node10 = BiSearchTree(42);
 	BiSearchTree node11 = BiSearchTree(53);
 
+	BiSearchTree node12 = BiSearchTree(111);
+
 	root.addChild(&node1);
 	root.addChild(&node2);
 	root.addChild(&node3);
@@ -157,6 +161,6 @@ int main(int argc, char const *argv[]){
 	printf("\n");
 	root.printLast();
 	printf("\n");
-	printf(" is contains :  %d\n", root.contains(53));
+	printf(" is contains :  %d\n", root.contains(&node12));
 	
 }
