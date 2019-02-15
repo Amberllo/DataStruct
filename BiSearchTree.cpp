@@ -31,6 +31,10 @@ public:
 	int getValue(){
 		return value;
 	}
+
+	bool contains(int v){
+		return contains(this, v);
+	}
 	
 protected:
 
@@ -43,7 +47,7 @@ protected:
 		}
 	}
 
-	//先序遍历，打印树（中左右）
+	//中序遍历，打印树（中左右）
 	void printFirst(BiSearchTree* node){
 		if(node!=NULL){
 			printf("%d ", node->getValue());
@@ -52,7 +56,7 @@ protected:
 		}
 	}
 
-	//先序遍历，打印树（左右中）
+	//后序遍历，打印树（左右中）
 	void printLast(BiSearchTree* node){
 		if(node!=NULL){
 			printLast(node->getLeft());
@@ -93,7 +97,7 @@ protected:
 			}
 			
 		} else if(childValue > parentValue){
-			if(parent->getRight()==NULL){
+			if(parent->getRight() == NULL){
 				parent->setRight(child);
 			}else{
 				addChild(parent->getRight(),child);
@@ -101,6 +105,17 @@ protected:
 	
 		} 
 
+	}
+
+	bool contains(BiSearchTree* node, int v){
+		if(node == NULL)return false;
+		if(v == node->getValue())  {
+			return true;
+		}else if(v > node->getValue()){
+			return contains(node->getRight(),v);
+		}else {
+			return contains(node->getLeft(),v); 
+		}
 	}
 
 private:
@@ -136,9 +151,12 @@ int main(int argc, char const *argv[]){
 	root.addChild(&node10);
 	root.addChild(&node11);
 
-	
-	
 	root.printFirst();
-	// root.printMiddle();
-	// root.printLast();
+	printf("\n");
+	root.printMiddle();
+	printf("\n");
+	root.printLast();
+	printf("\n");
+	printf(" is contains :  %d\n", root.contains(53));
+	
 }
