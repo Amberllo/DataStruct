@@ -35,6 +35,10 @@ public:
 	bool contains(BiSearchTree* node){
 		return contains(this, node);
 	}
+
+	void deleteNode(BiSearchTree* node){
+		deleteNode(this, node);
+	}
 	
 protected:
 
@@ -117,6 +121,13 @@ protected:
 			return contains(root->getRight(), node);
 		}else {
 			return contains(root->getLeft(), node); 
+		}
+	}
+
+	void deleteNode(BiSearchTree* root, BiSearchTree* node){
+		if(root == NULL) return;
+		if(root == node){
+			
 		}
 	}
 
